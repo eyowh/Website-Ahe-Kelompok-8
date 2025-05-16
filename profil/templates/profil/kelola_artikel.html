@@ -1,0 +1,208 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Kelola Artikel</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0; /* Menghilangkan padding default body */
+            color: #333;
+        }
+
+        /* Navbar Styling */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            padding: 0.5em 1.5em; /* Kurangi padding horizontal agar navbar tidak terlalu lebar */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%; /* Pastikan navbar mencakup seluruh lebar layar */
+            border-bottom: 2px solid #ccc; /* Menambahkan garis bawah untuk pemisah */
+            box-sizing: border-box; /* Pastikan padding dan border tidak mempengaruhi ukuran */
+        }
+
+        .nav-logo img {
+            max-width: 65px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5em;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .nav-links a.active {
+            color: #c12d8a;
+        }
+
+        .nav-links a:hover {
+            color: #b4002d;
+        }
+
+        /* Konten utama */
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            padding: 2em;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            margin-top: 3em; /* Memberikan ruang di atas konten untuk navbar */
+        }
+
+        h2 {
+            color: #b4002d;
+            text-align: center;
+            margin-bottom: 1em;
+        }
+
+        form {
+            margin-bottom: 2em;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 1em;
+        }
+
+        input[type="text"],
+        textarea,
+        select,
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        button {
+            margin-top: 1em;
+            padding: 10px 20px;
+            background-color: #b4002d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #900026;
+        }
+
+        .artikel-item {
+            background-color: #f1f1f1;
+            padding: 1em;
+            border-radius: 8px;
+            margin-bottom: 1em;
+            display: flex;
+            align-items: center;
+            gap: 1em;
+        }
+
+        .artikel-item h3 {
+            margin: 0 0 0.5em;
+            color: #c12d8a;
+        }
+
+        .artikel-item p {
+            margin: 0.5em 0;
+        }
+
+        .artikel-item small {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .hapus-link {
+            color: #b4002d;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hapus-link:hover {
+            text-decoration: underline;
+        }
+
+        .artikel-thumbnail {
+            max-width: 150px;
+            border-radius: 6px;
+            margin-bottom: 0.5em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-logo">
+            <a href="/"><img src="https://www.ahe.education/images/static/logo.png" alt="Logo AHE"></a>
+        </div>
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/dashboard/kelola-artikel/" class="active">Kelola Artikel</a> <!-- Link ke kelola artikel -->
+            <a href="/dashboard/kelola-program/">Kelola Program</a> <!-- Link ke kelola program -->
+            <a href="/dashboard/kelola_galeri/">Kelola Galeri</a> <!-- Link ke kelola galeri -->
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+    </nav>
+
+    <!-- KONTEKS UTAMA -->
+    <div class="container">
+        <h2>Kelola Artikel</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="id_judul">Judul</label>
+            {{ form.judul }}
+
+            <label for="id_isi">Isi</label>
+            {{ form.isi }}
+
+            <label for="id_halaman">Halaman</label>
+            {{ form.halaman }}
+
+            <label for="id_gambar">Gambar Artikel</label>
+            {{ form.gambar }} <!-- Gunakan field gambar, bukan gambar_artikel -->
+
+            <button type="submit">Tambah Artikel</button>
+        </form>
+
+        <hr>
+
+        <h3>Daftar Artikel</h3>
+        {% for artikel in artikel_list %}
+            <div class="artikel-item">
+                {% if artikel.gambar %}
+                    <img src="{{ artikel.gambar.url }}" class="artikel-thumbnail" alt="{{ artikel.judul }}">
+                {% endif %}
+                <div>
+                    <h3><a href="{% url 'detail_artikel' artikel.slug %}" style="text-decoration: none; color: #c12d8a;">{{ artikel.judul }}</a></h3>
+                    <p>{{ artikel.isi|truncatewords:20 }}</p>
+                    <small>Halaman: {{ artikel.halaman }} | Tanggal: {{ artikel.tanggal|date:"d M Y" }}</small><br>
+                    <a href="{% url 'hapus_artikel' artikel.id %}" class="hapus-link" onclick="return confirm('Yakin ingin menghapus artikel ini?')">Hapus</a>
+                </div>
+            </div>
+        {% empty %}
+            <p>Tidak ada artikel.</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

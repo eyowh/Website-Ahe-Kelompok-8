@@ -1,0 +1,285 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beranda - AHE (Anak Hebat)</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      color: #333;
+      height: 100%;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      padding: 0.5em 2em;
+    }
+
+    .nav-logo img {
+      max-width: 65px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5em;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #555;
+      font-weight: bold;
+      font-size: 1em;
+    }
+
+    .nav-links a.active {
+      color: #c12d8a;
+    }
+
+    .nav-links a:hover {
+      color: #b4002d;
+    }
+
+    body {
+      padding-top: 120px;
+    }
+
+    .home-section .main-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 2em;
+      gap: 2em;
+      min-height: 80vh;
+      background-color: #f9f9f9;
+    }
+
+    .home-section .main-content img {
+      max-width: 450px;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .home-section .main-text {
+      max-width: 450px;
+      text-align: center;
+    }
+
+    .home-section .main-text h1 {
+      color: #c12d8a;
+      font-size: 2.5em;
+      font-weight: bold;
+      line-height: 1.4;
+      margin-bottom: 1em;
+    }
+
+    .home-section .main-text p {
+      font-size: 1.1em;
+      margin-bottom: 1.5em;
+    }
+
+    .home-section .main-text a {
+      display: inline-block;
+      padding: 0.75em 1.5em;
+      background-color: #b4002d;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .home-section .main-text a:hover {
+      background-color: #8e0024;
+    }
+
+    .home-section .artikel-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2em 1em;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .home-section .artikel-section h2 {
+      color: #b4002d;
+      margin-bottom: 1.5em;
+      font-size: 2em;
+    }
+
+    .home-section .artikel-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2em;
+      width: 100%;
+    }
+
+    .home-section .artikel-item {
+      background-color: white;
+      padding: 1.5em;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: left;
+      transition: transform 0.3s ease;
+    }
+
+    .home-section .artikel-item:hover {
+      transform: scale(1.05);
+    }
+
+    .home-section .artikel-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1em;
+    }
+
+    .home-section .artikel-item h3 {
+      margin-bottom: 0.75em;
+      color: #c12d8a;
+      font-size: 1.5em;
+    }
+
+    .home-section .artikel-item p {
+      font-size: 1em;
+      color: #555;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      line-clamp: 4;
+      -webkit-line-clamp: 4;
+    }
+
+    .home-section .artikel-item a {
+      display: inline-block;
+      margin-top: 1em;
+      color: #b4002d;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .home-section .artikel-item a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: #b4002d;
+      color: white;
+      text-align: center;
+      padding: 1em 0;
+      margin-top: 3em;
+    }
+
+    @media (max-width: 768px) {
+      .home-section .main-content {
+        flex-direction: column;
+        padding: 2em 1em;
+      }
+
+      .home-section .main-text h1 {
+        font-size: 2em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">
+    <a href="/"><img src="https://www.ahe.education/images/static/logo.png" alt="Logo AHE"></a>
+  </div>
+  <div class="nav-links">
+    <a href="#home">Beranda</a>
+    <a href="#tentang">Tentang Kami</a>
+    <a href="#program">Program</a>
+    <a href="#kontak">Kontak</a>
+  </div>
+</nav>
+
+<!-- SECTION BERANDA -->
+<section id="home" class="home-section">
+  <div class="main-content">
+    <img src="https://www.ahe.education/images/static/ahe1.png" alt="Ilustrasi Anak Hebat" />
+    <div class="main-text">
+      <h1>Asyiknya Belajar Bersama AHE</h1>
+      <p>Kami hadir untuk membantu anak-anak Indonesia menjadi lebih cerdas dan hebat sejak dini.</p>
+      <a href="#program">Lihat Program</a>
+    </div>
+  </div>
+
+  {% if artikel_list %}
+  <section class="artikel-section">
+    <h2>Artikel Terbaru</h2>
+    <div class="artikel-container">
+      {% for artikel in artikel_list %}
+      <div class="artikel-item">
+        {% if artikel.gambar %}
+        <img src="{{ artikel.gambar.url }}" alt="{{ artikel.judul }}" />
+        {% endif %}
+        <h3>{{ artikel.judul }}</h3>
+        <p>{{ artikel.isi|truncatewords:25 }}</p>
+        <a href="{% url 'detail_artikel' artikel.slug %}">Baca Selengkapnya</a>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</section>
+
+<!-- SECTION LAIN -->
+<section id="tentang">{% include 'profil/tentang.html' %}</section>
+<section id="program">{% include 'profil/program.html' %}</section>
+<section id="kontak">{% include 'profil/kontak.html' %}</section>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2025 AHE - Anak Hebat. All rights reserved.
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 130;
+      const sectionHeight = section.clientHeight;
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+</body>
+</html>

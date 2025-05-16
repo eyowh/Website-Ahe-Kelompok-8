@@ -1,0 +1,211 @@
+{% load static %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Program - AHE (Anak Hebat)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+
+        body {
+            padding-top: 100px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 0.5em 2em;
+        }
+
+        .nav-logo img {
+            max-width: 65px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5em;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .nav-links a.active {
+            color: #c12d8a;
+        }
+
+        .nav-links a:hover {
+            color: #b4002d;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2em 1em;
+        }
+
+        .program-container {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .text-content {
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        .text-content h1 {
+            font-size: 2.2em;
+            margin-bottom: 0.5em;
+        }
+
+        .text-content p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+        }
+
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2em;
+        }
+
+        .program-box {
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #7f1d5a;
+    color: white;
+    border-radius: 20px;
+    padding: 1.5em;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* teks dan isi ke kiri */
+    text-align: left; /* teks di dalam ikut rata kiri */
+}
+
+.program-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+}
+
+.program-box img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
+
+.program-box h3 {
+    font-size: 1.4em;
+    margin-bottom: 0.5em;
+    text-align: left; /* sebelumnya center, ubah ke kiri */
+}
+
+.program-box ul {
+    list-style-type: disc;
+    padding-left: 1.2em;
+    font-size: 1em;
+    line-height: 1.5;
+    margin-top: 0.5em;
+}
+
+.program-box ul li {
+    margin-bottom: 0.5em;
+}
+
+
+        footer {
+            background-color: #b4002d;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            margin-top: 3em;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1em;
+                margin-top: 0.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    
+    <!-- ISI UTAMA -->
+    <main>
+        <div class="program-container">
+            <div class="text-content">
+                <h1>Program Kami</h1>
+                
+            </div>
+
+            {% if program_list %}
+                <div class="program-grid">
+                    {% for program in program_list %}
+                        <div class="program-box">
+                            {% if program.gambar %}
+                                <img src="{{ program.gambar.url }}" alt="{{ program.nama }}">
+                            {% endif %}
+                            <h3>{{ program.nama }}</h3>
+                            <ul>
+                                {% for point in program.deskripsi|splitlines %}
+                                    {% if point %}
+                                        <li>{{ point|striptags }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p style="text-align:center;">Belum ada program yang tersedia.</p>
+            {% endif %}
+
+            <div class="text-content">
+                
+            </div>
+        </div>
+    </main>
+
+    
+
+</body>
+</html>

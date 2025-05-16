@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ artikel.judul }} - AHE (Anak Hebat)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 0.5em 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-logo img {
+            max-width: 65px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5em;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .nav-links a.active {
+            color: #c12d8a;
+        }
+
+        .nav-links a:hover {
+            color: #b4002d;
+        }
+
+        .main {
+            flex: 1;
+            padding: 2em;
+            max-width: 900px;
+            margin: auto;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+        }
+
+        .main img {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5em;
+        }
+
+        .main h1 {
+            font-size: 2.8em;
+            color: #c12d8a;
+            margin-bottom: 0.5em;
+        }
+
+        .main .meta {
+            font-size: 0.95em;
+            color: #777;
+            margin-bottom: 2em;
+        }
+
+        .main p {
+            font-size: 1.15em;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 1.5em;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 0.75em 1.5em;
+            background-color: #b4002d;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #8e0024;
+        }
+
+        footer {
+            background-color: #b4002d;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .main {
+                padding: 1.5em;
+            }
+
+            .main h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-logo">
+            <a href="/"><img src="https://www.ahe.education/images/static/logo.png" alt="Logo AHE"></a>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="active">Beranda</a>
+            <a href="/tentang/">Tentang Kami</a>
+            <a href="/program/">Program</a>
+            <a href="/kontak/">Kontak</a>
+        </div>
+    </nav>
+
+    <!-- DETAIL ARTIKEL -->
+    <div class="main">
+        {% if artikel.gambar %}
+            <img src="{{ artikel.gambar.url }}" alt="{{ artikel.judul }}">
+        {% endif %}
+        <h1>{{ artikel.judul }}</h1>
+        <div class="meta">Dipublikasikan pada: {{ artikel.tanggal|date:"d F Y" }}</div>
+        <p>{{ artikel.isi|linebreaks }}</p>
+        <a href="/" class="back-button">← Kembali ke Beranda</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2025 AHE - Anak Hebat. All rights reserved.
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Kelola Program Belajar - Admin AHE</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Navbar Styling */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            padding: 0.5em 1.5em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .nav-logo img {
+            max-width: 65px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5em;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .nav-links a.active {
+            color: #c12d8a;
+        }
+
+        .nav-links a:hover {
+            color: #b4002d;
+        }
+
+        /* Main Content */
+        .container {
+            padding: 2em;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h2 {
+    color: #b4002d;
+    text-align: center;
+} 
+
+        /* Form Styling */
+        form {
+            background: #fff;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            max-width: 700px;
+            margin: 2em auto;
+        }
+
+        form label {
+            font-weight: bold;
+            margin-bottom: 0.5em;
+            display: block;
+            color: #333;
+        }
+
+        form input[type="text"],
+        form textarea,
+        form input[type="file"],
+        form select {
+            width: 100%;
+            padding: 0.75em 1em;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-bottom: 1.5em;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        form button {
+            background-color: #b4002d;
+            color: white;
+            border: none;
+            font-weight: bold;
+            padding: 0.75em 2em;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #8e0024;
+        }
+
+        /* Program List */
+        .program-list {
+            background: white;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            margin-top: 2em;
+        }
+
+        .program-item {
+            border-bottom: 1px solid #eee;
+            padding: 1em 0;
+        }
+
+        .program-item:last-child {
+            border-bottom: none;
+        }
+
+        .program-item img {
+            max-width: 150px;
+            margin-top: 0.5em;
+            border-radius: 6px;
+        }
+
+        .hapus-link {
+            color: #b4002d;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hapus-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-logo">
+            <a href="/"><img src="https://www.ahe.education/images/static/logo.png" alt="Logo AHE"></a>
+        </div>
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/dashboard/kelola-artikel/">Kelola Artikel</a>
+            <a href="/dashboard/kelola-program/" class="active">Kelola Program</a>
+            <a href="/dashboard/kelola_galeri/">Kelola Galeri</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+
+        <h2>Kelola Program Belajar</h2>
+
+        <!-- Form Tambah Program -->
+        
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="id_nama">Nama:</label>
+            {{ form.nama }}
+
+            <label for="id_deskripsi">Deskripsi:</label>
+            {{ form.deskripsi }}
+
+            <label for="id_gambar">Gambar:</label>
+            {{ form.gambar }}
+
+            <button type="submit">Simpan Program</button>
+        </form>
+
+        <!-- Daftar Program -->
+        <div class="program-list">
+            <h3>Daftar Program</h3>
+            {% if program_list %}
+                {% for program in program_list %}
+                    <div class="program-item">
+                        <strong>{{ program.nama }}</strong><br>
+                        <p>{{ program.deskripsi|linebreaksbr }}</p>
+                        {% if program.gambar %}
+                            <img src="{{ program.gambar.url }}" alt="{{ program.nama }}">
+                        {% endif %}
+                        <br>
+                        <a class="hapus-link" href="{% url 'hapus_program' program.id %}" onclick="return confirm('Yakin ingin menghapus program ini?')">Hapus</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Tidak ada program yang tersedia.</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+</body>
+</html>

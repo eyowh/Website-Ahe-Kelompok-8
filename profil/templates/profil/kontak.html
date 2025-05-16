@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Kontak - AHE (Anak Hebat)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #fff;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body {
+            padding-top: 100px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 0.5em 2em;
+        }
+
+        .nav-logo img {
+            max-width: 65px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5em;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .nav-links a.active {
+            color: #c12d8a;
+        }
+
+        .nav-links a:hover {
+            color: #b4002d;
+        }
+
+        main {
+            flex: 1;
+            padding: 2em;
+            display: flex;
+            justify-content: center;
+        }
+
+        .kontak-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2em;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .lokasi-kontak, .info-kontak {
+            flex: 1 1 45%;
+            min-width: 280px;
+        }
+
+        .lokasi-kontak h2, .info-kontak h2 {
+            margin-bottom: 1em;
+            color: #c12d8a;
+        }
+
+        .lokasi-kontak iframe {
+            width: 100%;
+            height: 350px;
+            border: 0;
+            border-radius: 12px;
+        }
+
+        .info-kontak p {
+            margin-bottom: 1em;
+            font-size: 1.05em;
+            line-height: 1.6;
+        }
+
+        .info-kontak strong {
+            color: #b4002d;
+        }
+
+        footer {
+            background-color: #b4002d;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1em;
+                margin-top: 0.5em;
+            }
+
+            .kontak-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .lokasi-kontak, .info-kontak {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    
+
+    <!-- ISI UTAMA -->
+    <main>
+        <div class="kontak-container">
+            <!-- Google Maps -->
+            <div class="lokasi-kontak">
+                <h2>Alamat Lokasi</h2>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253770.84640792955!2d106.6279289445867!3d-6.372109051579314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69eb630b674217%3A0xdfadddb2dea32503!2sAHe%20Jatimulya%20Depok!5e0!3m2!1sid!2sid!4v1746446369323!5m2!1sid!2sid" 
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <!-- Info Kontak -->
+            <div class="info-kontak">
+                <h2>Informasi Kontak</h2>
+                <p><strong>Alamat:</strong><br>
+                    Jl. Cepit Raya No.46, Jatimulya, Kec. Cilodong, Kota Depok, Jawa Barat 16413</p>
+                <p><strong>Email:</strong><br>
+                    info@ahe.co.id</p>
+                <p><strong>WhatsApp:</strong><br>
+                    0812-9363-8310</p>
+                <p><strong>Instagram:</strong><br>
+                    <a href="https://instagram.com/aheofficial" target="_blank">@aheofficial</a></p>
+            </div>
+        </div>
+    </main>
+
+   
+
+</body>
+</html>

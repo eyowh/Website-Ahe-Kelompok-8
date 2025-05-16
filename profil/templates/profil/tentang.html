@@ -1,0 +1,284 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tentang Kami - AHE (Anak Hebat)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+    scroll-behavior: smooth;
+}
+        body {
+            height: 100%;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #fff;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body {
+            padding-top: 100px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            padding: 0.5em 2em;
+        }
+
+        .nav-logo img {
+            max-width: 65px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5em;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .nav-links a.active {
+            color: #c12d8a;
+        }
+
+        .nav-links a:hover {
+            color: #b4002d;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2em;
+        }
+
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2em;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .text-content {
+            flex: 1 1 60%;
+            min-width: 300px;
+        }
+
+        .text-content h1 {
+            font-size: 2em;
+            color: #c12d8a;
+            margin-bottom: 1em;
+        }
+
+        .text-content p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 1em;
+            text-align: justify;
+        }
+
+        .text-content strong {
+            color: #b4002d;
+        }
+
+        .image-side {
+            flex: 1 1 35%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+            min-width: 250px;
+        }
+
+        .image-side img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #b4002d;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1em;
+                margin-top: 0.5em;
+            }
+
+            .about-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .text-content,
+            .image-side {
+                width: 100%;
+            }
+
+            .text-content h1 {
+                text-align: center;
+            }
+        }
+
+        .artikel-section {
+            margin-top: 2em;
+            padding-top: 1em;
+            border-top: 2px solid #eee;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .artikel-section h2 {
+            font-size: 1.5em;
+            color: #c12d8a;
+            margin-bottom: 1em;
+        }
+
+        .artikel-item {
+            margin-bottom: 2em;
+            padding: 1em;
+            background-color: #fafafa;
+            border-left: 4px solid #c12d8a;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .artikel-item h3 {
+            font-size: 1.2em;
+            color: #b4002d;
+            margin-bottom: 0.5em;
+        }
+
+        .artikel-item p {
+            margin-bottom: 0.5em;
+        }
+
+        .artikel-item small {
+            color: #777;
+            font-style: italic;
+        }
+
+        /* Galeri Grid */
+        .galeri-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5em;
+            margin-top: 1em;
+        }
+
+        .galeri-item {
+            text-align: center;
+            background-color: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 1em;
+        }
+
+        .galeri-item img {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 0.5em;
+        }
+
+        .galeri-item p {
+            font-size: 0.95em;
+            color: #555;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    
+
+    <!-- ISI UTAMA -->
+    <main>
+        <div class="about-container">
+            <div class="text-content">
+                <h1>Tentang Kami</h1>
+                <p><strong>AHE (Anak Hebat Education)</strong> adalah platform edukasi digital yang bertujuan untuk meningkatkan kualitas pembelajaran di Indonesia. Kami menyediakan berbagai macam materi dan pelatihan untuk mendukung perkembangan anak-anak Indonesia melalui pendidikan yang menyenangkan dan interaktif. Berawal dari semangat untuk menciptakan pengalaman belajar yang lebih baik, AHE hadir dengan berbagai inovasi di dunia pendidikan, termasuk pelajaran berbasis teknologi dan kurikulum yang terintegrasi dengan kebutuhan zaman sekarang. AHE bekerja sama dengan berbagai pihak untuk memastikan setiap anak dapat merasakan manfaat dari pembelajaran berkualitas. Dengan dukungan penuh dari berbagai profesional, AHE terus berupaya memberikan yang terbaik dalam dunia pendidikan. Bergabunglah bersama kami untuk menciptakan ekosistem belajar yang positif, inklusif, dan bermanfaat bagi semua anak-anak di Indonesia.</p>
+
+                <h1>Sejarah Kami</h1>
+                <p><strong>AHE</strong> terbentuk menjadi Lembaga pada 06 April 2009. Memiliki hak paten KEMENKUMHAM RI Nomor 000330997. Tercatat di akta notaris Aryanti Nurul Aini, S.H. Nomor 02/06-04-2009 dan terdaftar di Pengadilan Negeri Sukoharjo Nomor 118/2009/PN.SKH. Ahe memiliki kantor pusat di Jl Sunan No. 9, Alun-Alun Kidul, Kartosuro, Sukoharjo.
+
+                    Dengan terbentuknya Lembaga ini, Ahe membuka kemitraan untuk masyarakat yang berminat untuk mendirikan Unit Ahe di domisilinya. Dapat dikatakan juga Ahe adalah peluang nyata usaha rumahan Les Baca. Dalam sistem usaha Kemitraan ini, tidak ada bagi hasil dan penghasilan dari SPP murid menjadi hak milik Mitra Ahe sepenuhnya. Kemitraan Ahe ini sangat tepat untuk para pelaku bimbel dalam menambah program belajar baca, untuk ibu rumah tangga yang ingin membuka usaha tetapi tetap dirumah saja, untuk guru honorer atau guru TK sebagai tambahan penghasilan, dan masyarakat umum yang ingin membuka les baca.</p>
+            </div>
+        </div>
+
+        <!-- GALERI KEGIATAN -->
+        <section class="artikel-section">
+            <h2>Galeri Kegiatan</h2>
+            <div class="galeri-grid">
+                {% for item in galeri %}
+                    <div class="galeri-item">
+                        <img src="{{ item.foto.url }}" alt="Foto Galeri">
+                        <p>{{ item.caption }}</p>
+                    </div>
+                {% empty %}
+                    <p>Belum ada foto di galeri.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- ARTIKEL -->
+        <section class="artikel-section">
+            <h2>Artikel Terkait Tentang Kami</h2>
+            {% for artikel in artikel_tentang %}
+                <div class="artikel-item">
+                    <h3>{{ artikel.judul }}</h3>
+                    <p>{{ artikel.isi|linebreaks }}</p>
+                    <small>Diposting pada {{ artikel.tanggal }}</small>
+                </div>
+            {% empty %}
+                <p>Belum ada artikel untuk halaman ini.</p>
+            {% endfor %}
+        </section>
+    </main>
+
+    
+
+</body>
+
+</html>

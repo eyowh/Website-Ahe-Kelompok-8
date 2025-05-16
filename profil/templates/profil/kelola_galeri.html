@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Kelola Galeri</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            padding: 0.5em 1.5em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            border-bottom: 2px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .nav-logo img {
+            max-width: 65px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5em;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .nav-links a.active {
+            color: #c12d8a;
+        }
+
+        .nav-links a:hover {
+            color: #b4002d;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            padding: 2em;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            margin-top: 3em;
+        }
+
+        h2 {
+            color: #b4002d;
+            text-align: center;
+            margin-bottom: 1em;
+        }
+
+        form {
+            margin-bottom: 2em;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 1em;
+        }
+
+        input[type="text"],
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        button {
+            margin-top: 1em;
+            padding: 10px 20px;
+            background-color: #b4002d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #900026;
+        }
+
+        .galeri-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .galeri-item {
+            width: 200px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 10px;
+        }
+
+        .galeri-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .galeri-item p {
+            margin-top: 0.5em;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .hapus-link {
+            color: #b4002d;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hapus-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="nav-logo">
+        <a href="/"><img src="https://www.ahe.education/images/static/logo.png" alt="Logo AHE"></a>
+    </div>
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/dashboard/kelola-artikel/">Kelola Artikel</a>
+        <a href="/dashboard/kelola-program/">Kelola Program</a>
+        <a href="/dashboard/kelola_galeri/" class="active">Kelola Galeri</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</nav>
+
+<!-- KONTEN UTAMA -->
+<div class="container">
+    <h2>Kelola Galeri</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="id_foto">Foto</label>
+        {{ form.foto }}
+
+        <label for="id_caption">Caption</label>
+        {{ form.caption }}
+
+        <button type="submit">Tambah Foto</button>
+    </form>
+
+    <hr>
+
+    <h3 style="color:#c12d8a;">Daftar Foto</h3>
+    <div class="galeri-grid">
+        {% for item in galeri %}
+            <div class="galeri-item">
+                <img src="{{ item.foto.url }}" alt="{{ item.caption }}">
+                <p>{{ item.caption }}</p>
+                <a href="{% url 'hapus_foto' item.id %}" class="hapus-link" onclick="return confirm('Yakin ingin menghapus foto ini?')">Hapus</a>
+            </div>
+        {% empty %}
+            <p>Belum ada foto di galeri.</p>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
