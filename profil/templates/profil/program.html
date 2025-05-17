@@ -95,53 +95,76 @@
         }
 
         .program-box {
-    
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #7f1d5a;
-    color: white;
-    border-radius: 20px;
-    padding: 1.5em;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* teks dan isi ke kiri */
-    text-align: left; /* teks di dalam ikut rata kiri */
-}
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #7f1d5a;
+            color: white;
+            border-radius: 20px;
+            padding: 1.5em;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
 
-.program-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
-}
+        .program-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+        }
 
-.program-box img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 1em;
-}
+        .program-box img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1em;
+        }
 
-.program-box h3 {
-    font-size: 1.4em;
-    margin-bottom: 0.5em;
-    text-align: left; /* sebelumnya center, ubah ke kiri */
-}
+        .program-box h3 {
+            font-size: 1.4em;
+            margin-bottom: 0.5em;
+        }
 
-.program-box ul {
-    list-style-type: disc;
-    padding-left: 1.2em;
-    font-size: 1em;
-    line-height: 1.5;
-    margin-top: 0.5em;
-}
+        .program-box ul {
+            list-style-type: disc;
+            padding-left: 1.2em;
+            font-size: 1em;
+            line-height: 1.5;
+            margin-top: 0.5em;
+        }
 
-.program-box ul li {
-    margin-bottom: 0.5em;
-}
+        .program-box ul li {
+            margin-bottom: 0.5em;
+        }
 
+        .syarat-box {
+            background-color: #fef6fa;
+            border: 2px solid #c12d8a;
+            border-radius: 12px;
+            padding: 2em;
+            max-width: 900px;
+            margin: 3em auto 0 auto;
+            color: #333;
+        }
+
+        .syarat-box h2 {
+            color: #c12d8a;
+            margin-bottom: 1em;
+            font-size: 1.6em;
+        }
+
+        .syarat-box ul {
+            padding-left: 1.5em;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .syarat-box ul li {
+            margin-bottom: 0.7em;
+        }
 
         footer {
             background-color: #b4002d;
@@ -174,7 +197,6 @@
         <div class="program-container">
             <div class="text-content">
                 <h1>Program Kami</h1>
-                
             </div>
 
             {% if program_list %}
@@ -199,13 +221,19 @@
                 <p style="text-align:center;">Belum ada program yang tersedia.</p>
             {% endif %}
 
-            <div class="text-content">
-                
+            <!-- Syarat Pendaftaran -->
+            <div class="syarat-box">
+                <h2>Syarat Pendaftaran</h2>
+                <ul>
+                    <li>Mengisi formulir pendaftaran (online atau langsung di tempat)</li>
+                    <li>Melampirkan fotokopi akta kelahiran atau Kartu Identitas Anak</li>
+                    <li>Menyerahkan pas foto ukuran 3x4 (2 lembar)</li>
+                    <li>Membayar biaya administrasi pendaftaran sesuai program</li>
+                    <li>Usia minimal 4 tahun (untuk PAUD), 6 tahun (untuk program SD)</li>
+                </ul>
             </div>
         </div>
     </main>
 
-    
-
-</body>
-</html>
+    <!-- FOOTER -->
+    <
