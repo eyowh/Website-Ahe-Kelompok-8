@@ -71,11 +71,15 @@
         .program-container {
             width: 100%;
             max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Konten rata kiri */
         }
 
         .text-content {
             text-align: center;
             margin-bottom: 2em;
+            width: 100%;
         }
 
         .text-content h1 {
@@ -92,6 +96,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2em;
+            width: 100%;
         }
 
         .program-box {
@@ -145,9 +150,10 @@
             border: 2px solid #c12d8a;
             border-radius: 12px;
             padding: 2em;
-            max-width: 900px;
-            margin: 3em auto 0 auto;
+            max-width: 500px;
+            margin-top: 3em;
             color: #333;
+            align-self: flex-start; /* Biar nempel ke kiri */
         }
 
         .syarat-box h2 {
@@ -184,6 +190,14 @@
                 flex-wrap: wrap;
                 gap: 1em;
                 margin-top: 0.5em;
+            }
+
+            .program-container {
+                align-items: center;
+            }
+
+            .syarat-box {
+                align-self: center;
             }
         }
     </style>
@@ -225,15 +239,16 @@
             <div class="syarat-box">
                 <h2>Syarat Pendaftaran</h2>
                 <ul>
-                    <li>Mengisi formulir pendaftaran (online atau langsung di tempat)</li>
-                    <li>Melampirkan fotokopi akta kelahiran atau Kartu Identitas Anak</li>
-                    <li>Menyerahkan pas foto ukuran 3x4 (2 lembar)</li>
-                    <li>Membayar biaya administrasi pendaftaran sesuai program</li>
-                    <li>Usia minimal 4 tahun (untuk PAUD), 6 tahun (untuk program SD)</li>
+                    <li>Melampirkan fotokopi kartu keluarga</li>
+                    <li>Melampirkan fotokopi akta kelahiran</li>
+                    <li>Menyerahkan pas foto ukuran 3x4 (2 lembar) dengan background berwarna merah</li>
                 </ul>
             </div>
         </div>
     </main>
 
     <!-- FOOTER -->
-    <
+    
+
+</body>
+</html>

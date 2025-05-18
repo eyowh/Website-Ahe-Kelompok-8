@@ -58,19 +58,41 @@
     }
 
     body {
-      padding-top: 120px;
+      padding-top: 50px;
     }
 
+    #home {
+  background-color: #ec1616;
+}
+
+#tentang {
+  background-color: #ff1170;
+}
+
+#program {
+  background-color: #ea04ff;
+}
+
+#kontak {
+  background-color: #101010;
+}
+
     .home-section .main-content {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      padding: 2em;
-      gap: 2em;
-      min-height: 80vh;
-      background-color: #f9f9f9;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2em;
+  gap: 2em;
+  min-height: 80vh;
+  margin-top: -35px;
+
+  background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static 'profil/images/backgroundahe.jpg' %}");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+}
 
     .home-section .main-content img {
       max-width: 450px;
@@ -209,12 +231,13 @@
 <!-- NAVBAR -->
 <nav>
   <div class="nav-logo">
-    <a href="/"><img src="https://www.ahe.education/images/static/logo.png" alt="Logo AHE"></a>
+    <a href="/"><img src="{% static 'profil/images/logo.png' %}" alt="Logo AHE"></a>
   </div>
   <div class="nav-links">
     <a href="#home">Beranda</a>
     <a href="#tentang">Tentang Kami</a>
     <a href="#program">Program</a>
+    <a href="#testimoni">Testimoni</a>
     <a href="#kontak">Kontak</a>
   </div>
 </nav>
@@ -222,9 +245,9 @@
 <!-- SECTION BERANDA -->
 <section id="home" class="home-section">
   <div class="main-content">
-    <img src="https://www.ahe.education/images/static/ahe1.png" alt="Ilustrasi Anak Hebat" />
+    <img src="{% static 'profil/images/ahe1.png' %}" alt="Ilustrasi Anak Hebat" />
     <div class="main-text">
-      <h1>Asyiknya Belajar Bersama AHE</h1>
+      <h1 style="color: #fff;">Asyiknya Belajar Bersama AHE</h1>
       <p>Kami hadir untuk membantu anak-anak Indonesia menjadi lebih cerdas dan hebat sejak dini.</p>
       <a href="#program">Lihat Program</a>
     </div>
@@ -251,7 +274,9 @@
 <!-- SECTION LAIN -->
 <section id="tentang">{% include 'profil/tentang.html' %}</section>
 <section id="program">{% include 'profil/program.html' %}</section>
+<section id="testimoni">{% include 'profil/testimoni.html' %}</section>
 <section id="kontak">{% include 'profil/kontak.html' %}</section>
+
 
 <!-- FOOTER -->
 <footer>
