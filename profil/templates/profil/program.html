@@ -23,43 +23,9 @@
             padding-top: 100px;
         }
 
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            padding: 0.5em 2em;
-        }
+       
 
-        .nav-logo img {
-            max-width: 65px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5em;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #555;
-            font-weight: bold;
-            font-size: 1em;
-        }
-
-        .nav-links a.active {
-            color: #c12d8a;
-        }
-
-        .nav-links a:hover {
-            color: #b4002d;
-        }
+        
 
         main {
             display: flex;
@@ -153,7 +119,7 @@
             max-width: 500px;
             margin-top: 3em;
             color: #333;
-            align-self: flex-start; /* Biar nempel ke kiri */
+            align-self: center; /* Biar nempel ke kiri */
         }
 
         .syarat-box h2 {
@@ -166,19 +132,14 @@
             padding-left: 1.5em;
             font-size: 1.1em;
             line-height: 1.6;
+            text-align: left;
         }
 
         .syarat-box ul li {
             margin-bottom: 0.7em;
         }
 
-        footer {
-            background-color: #b4002d;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-            margin-top: 3em;
-        }
+        
 
         @media (max-width: 768px) {
             nav {
@@ -210,7 +171,7 @@
     <main>
         <div class="program-container">
             <div class="text-content">
-                <h1>Program Kami</h1>
+                <h1 style="color: #fff;">Program Kami</h1>
             </div>
 
             {% if program_list %}
@@ -251,4 +212,46 @@
     
 
 </body>
+<script>
+    // Buat style animasi fade-in-up via JS (tanpa CSS file)
+    const style = document.createElement('style');
+    style.innerHTML = `
+      .fade-in-up {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+      .fade-in-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    `;
+    document.head.appendChild(style);
+  
+    // Fungsi cek elemen ada di viewport
+    function isInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return rect.top < window.innerHeight && rect.bottom > 0;
+    }
+  
+    // Target elemen yang mau dianimasi
+    const animatedElements = document.querySelectorAll('.program-box, .syarat-box');
+  
+    // Pas page load, tambah kelas fade-in-up supaya start dari tersembunyi
+    animatedElements.forEach(el => el.classList.add('fade-in-up'));
+  
+    // Event scroll untuk toggle kelas visible jika elemen muncul
+    function checkAnimation() {
+      animatedElements.forEach(el => {
+        if (isInViewport(el)) {
+          el.classList.add('visible');
+        } else {
+          el.classList.remove('visible');
+        }
+      });
+    }
+  
+    window.addEventListener('scroll', checkAnimation);
+    window.addEventListener('load', checkAnimation);
+  </script>
 </html>
