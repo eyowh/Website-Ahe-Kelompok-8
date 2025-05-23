@@ -1,220 +1,222 @@
-{% load static %}
-{% load custom_filters %}
+{% load static %} {% load custom_filters %}
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Program - AHE (Anak Hebat)</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        font-family: "Segoe UI", sans-serif;
+        background-color: #fff;
+        color: #333;
+      }
+
+      body {
+        padding-top: 100px;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2em 1em;
+      }
+
+      .program-container {
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Konten rata kiri */
+      }
+
+      .text-content {
+        text-align: center;
+        margin-bottom: 2em;
+        width: 100%;
+      }
+
+      .text-content h1 {
+        font-size: 2.2em;
+        margin-bottom: 0.5em;
+      }
+
+      .text-content p {
+        font-size: 1.1em;
+        margin-bottom: 1.5em;
+      }
+
+      .program-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2em;
+        width: 100%;
+      }
+
+      .program-box {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: #7f1d5a;
+        color: white;
+        border-radius: 20px;
+        padding: 1.5em;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .program-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+      }
+
+      .program-box img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 1em;
+      }
+
+      .program-box h3 {
+        font-size: 1.4em;
+        margin-bottom: 0.5em;
+      }
+
+      .program-box ul {
+        list-style-type: disc;
+        padding-left: 1.2em;
+        font-size: 1em;
+        line-height: 1.5;
+        margin-top: 0.5em;
+      }
+
+      .program-box ul li {
+        margin-bottom: 0.5em;
+      }
+
+      .syarat-box {
+        background-color: #fef6fa;
+        border: 2px solid #c12d8a;
+        border-radius: 12px;
+        padding: 2em;
+        max-width: 500px;
+        margin-top: 3em;
+        color: #333;
+        align-self: center; /* Biar nempel ke kiri */
+      }
+
+      .syarat-box h2 {
+        color: #c12d8a;
+        margin-bottom: 1em;
+        font-size: 1.6em;
+      }
+
+      .syarat-box ul {
+        padding-left: 1.5em;
+        font-size: 1.1em;
+        line-height: 1.6;
+        text-align: left;
+      }
+
+      .syarat-box ul li {
+        margin-bottom: 0.7em;
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          flex-direction: column;
+          align-items: flex-start;
         }
 
-        html, body {
-            height: 100%;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #fff;
-            color: #333;
-        }
-
-        body {
-            padding-top: 100px;
-        }
-
-       
-
-        
-
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2em 1em;
+        .nav-links {
+          flex-wrap: wrap;
+          gap: 1em;
+          margin-top: 0.5em;
         }
 
         .program-container {
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start; /* Konten rata kiri */
-        }
-
-        .text-content {
-            text-align: center;
-            margin-bottom: 2em;
-            width: 100%;
-        }
-
-        .text-content h1 {
-            font-size: 2.2em;
-            margin-bottom: 0.5em;
-        }
-
-        .text-content p {
-            font-size: 1.1em;
-            margin-bottom: 1.5em;
-        }
-
-        .program-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2em;
-            width: 100%;
-        }
-
-        .program-box {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-color: #7f1d5a;
-            color: white;
-            border-radius: 20px;
-            padding: 1.5em;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-        }
-
-        .program-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
-        }
-
-        .program-box img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 1em;
-        }
-
-        .program-box h3 {
-            font-size: 1.4em;
-            margin-bottom: 0.5em;
-        }
-
-        .program-box ul {
-            list-style-type: disc;
-            padding-left: 1.2em;
-            font-size: 1em;
-            line-height: 1.5;
-            margin-top: 0.5em;
-        }
-
-        .program-box ul li {
-            margin-bottom: 0.5em;
+          align-items: center;
         }
 
         .syarat-box {
-            background-color: #fef6fa;
-            border: 2px solid #c12d8a;
-            border-radius: 12px;
-            padding: 2em;
-            max-width: 500px;
-            margin-top: 3em;
-            color: #333;
-            align-self: center; /* Biar nempel ke kiri */
+          align-self: center;
         }
-
-        .syarat-box h2 {
-            color: #c12d8a;
-            margin-bottom: 1em;
-            font-size: 1.6em;
-        }
-
-        .syarat-box ul {
-            padding-left: 1.5em;
-            font-size: 1.1em;
-            line-height: 1.6;
-            text-align: left;
-        }
-
-        .syarat-box ul li {
-            margin-bottom: 0.7em;
-        }
-
-        
-
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                gap: 1em;
-                margin-top: 0.5em;
-            }
-
-            .program-container {
-                align-items: center;
-            }
-
-            .syarat-box {
-                align-self: center;
-            }
-        }
+      }
+      .judul-program-box {
+        background-color: #fff;
+        padding: 0px 13px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        margin: 0px auto 0px;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- NAVBAR -->
-    
+
     <!-- ISI UTAMA -->
     <main>
-        <div class="program-container">
-            <div class="text-content">
-                <h1 style="color: #fff;">Program Kami</h1>
-            </div>
-
-            {% if program_list %}
-                <div class="program-grid">
-                    {% for program in program_list %}
-                        <div class="program-box">
-                            {% if program.gambar %}
-                                <img src="{{ program.gambar.url }}" alt="{{ program.nama }}">
-                            {% endif %}
-                            <h3>{{ program.nama }}</h3>
-                            <ul>
-                                {% for point in program.deskripsi|splitlines %}
-                                    {% if point %}
-                                        <li>{{ point|striptags }}</li>
-                                    {% endif %}
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p style="text-align:center;">Belum ada program yang tersedia.</p>
-            {% endif %}
-
-            <!-- Syarat Pendaftaran -->
-            <div class="syarat-box">
-                <h2>Syarat Pendaftaran</h2>
-                <ul>
-                    <li>Melampirkan fotokopi kartu keluarga</li>
-                    <li>Melampirkan fotokopi akta kelahiran</li>
-                    <li>Menyerahkan pas foto ukuran 3x4 (2 lembar) dengan background berwarna merah</li>
-                </ul>
-            </div>
+      <div class="program-container">
+        <div class="text-content">
+          <div class="judul-program-box">
+            <h1>Program Kami</h1>
+          </div>
         </div>
+
+        {% if program_list %}
+        <div class="program-grid">
+          {% for program in program_list %}
+          <div class="program-box">
+            {% if program.gambar %}
+            <img src="{{ program.gambar.url }}" alt="{{ program.nama }}" />
+            {% endif %}
+            <h3>{{ program.nama }}</h3>
+            <ul>
+              {% for point in program.deskripsi|splitlines %} {% if point %}
+              <li>{{ point|striptags }}</li>
+              {% endif %} {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p style="text-align: center">Belum ada program yang tersedia.</p>
+        {% endif %}
+
+        <!-- Syarat Pendaftaran -->
+        <div class="syarat-box">
+          <h2>Syarat Pendaftaran</h2>
+          <ul>
+            <li>Melampirkan fotokopi kartu keluarga</li>
+            <li>Melampirkan fotokopi akta kelahiran</li>
+            <li>
+              Menyerahkan pas foto ukuran 3x4 (2 lembar) dengan background
+              berwarna merah
+            </li>
+          </ul>
+        </div>
+      </div>
     </main>
 
     <!-- FOOTER -->
-    
-
-</body>
-<script>
+  </body>
+  <script>
     // Buat style animasi fade-in-up via JS (tanpa CSS file)
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.innerHTML = `
       .fade-in-up {
         opacity: 0;
@@ -227,31 +229,33 @@
       }
     `;
     document.head.appendChild(style);
-  
+
     // Fungsi cek elemen ada di viewport
     function isInViewport(el) {
       const rect = el.getBoundingClientRect();
       return rect.top < window.innerHeight && rect.bottom > 0;
     }
-  
+
     // Target elemen yang mau dianimasi
-    const animatedElements = document.querySelectorAll('.program-box, .syarat-box');
-  
+    const animatedElements = document.querySelectorAll(
+      ".program-box, .syarat-box"
+    );
+
     // Pas page load, tambah kelas fade-in-up supaya start dari tersembunyi
-    animatedElements.forEach(el => el.classList.add('fade-in-up'));
-  
+    animatedElements.forEach((el) => el.classList.add("fade-in-up"));
+
     // Event scroll untuk toggle kelas visible jika elemen muncul
     function checkAnimation() {
-      animatedElements.forEach(el => {
+      animatedElements.forEach((el) => {
         if (isInViewport(el)) {
-          el.classList.add('visible');
+          el.classList.add("visible");
         } else {
-          el.classList.remove('visible');
+          el.classList.remove("visible");
         }
       });
     }
-  
-    window.addEventListener('scroll', checkAnimation);
-    window.addEventListener('load', checkAnimation);
+
+    window.addEventListener("scroll", checkAnimation);
+    window.addEventListener("load", checkAnimation);
   </script>
 </html>
