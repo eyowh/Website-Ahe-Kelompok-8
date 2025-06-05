@@ -78,7 +78,7 @@ def hapus_artikel(request, id):
     artikel.delete()
     return redirect('kelola_artikel')
 
-@login_required
+
 def detail_artikel(request, slug):
     artikel = get_object_or_404(Artikel, slug=slug)
     return render(request, 'profil/detail_artikel.html', {'artikel': artikel})
